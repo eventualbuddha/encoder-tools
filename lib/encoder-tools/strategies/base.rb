@@ -1,5 +1,5 @@
 module EncoderTools
-  module Encoders
+  module Strategies
     class Base
       attr_reader :input_path, :title
 

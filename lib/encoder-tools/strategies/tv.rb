@@ -1,9 +1,9 @@
 module EncoderTools
-  module Encoders
-    class Movie < Base
+  module Strategies
+    class TV < Base
       def initialize(input_path)
         super
-        self.title = Options::Title::LONGEST
+        self.title = 1
       end
     end
   end

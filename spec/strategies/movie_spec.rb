@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe EncoderTools::Encoders::Movie do
+describe EncoderTools::Strategies::Movie do
   subject { described_class.new("fixtures/Batman.dvdmedia") }
 
   it "has an input_path attribute reader" do
