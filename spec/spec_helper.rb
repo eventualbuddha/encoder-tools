@@ -5,5 +5,11 @@ require 'spec'
 require 'spec/autorun'
 
 Spec::Runner.configure do |config|
-  
+  def subtitle(range, text)
+    EncoderTools::Subtitles::Subtitle.new(range, text)
+  end
+
+  def subfile(name)
+    File.read(File.dirname(__FILE__) + "/fixtures/subtitles/#{name}.srt")
+  end
 end
