@@ -6,10 +6,11 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "encoder-tools"
     gem.summary = %Q{Some tools to make encoding from DVDs easier}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Tools for ripping, encoding, and subtitling movies and TV shows}
     gem.email = "brian.donovan@gmail.com"
     gem.homepage = "http://github.com/eventualbuddha/encoder-tools"
     gem.authors = ["Brian Donovan"]
+    gem.add_dependency "thor", ">= 0"
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "yard", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
