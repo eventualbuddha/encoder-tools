@@ -1,23 +1,33 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe EncoderTools::CLI::Subtitles::Renumber do
-  subject { described_class.new(EncoderTools::CLI::Shell) }
+  before do
+    @input = StringIO.new
+    @output = StringIO.new
+  end
+
+  subject do
+    described_class.new(
+      :input => @input,
+      :output => @output
+    )
+  end
 
   it "does nothing with an empty subtitle list" do
-    stdin("") do
-      stdout { subject.run }.should == ""
-    end
+    @input.string = ""
+    subject.run
+    @output.string.should == ""
   end
 
   it "does not alter a correctly-numbered subtitle list" do
-    stdin(subfile("kill-bill-vol-2")) do
-      stdout { subject.run }.should == subfile("kill-bill-vol-2")
-    end
+    @input.string = subfile("kill-bill-vol-2")
+    subject.run
+    @output.string.should == subfile("kill-bill-vol-2")
   end
 
   it "fixes bad numbering in a subtitle list" do
-    stdin(subfile("bad-numbering")) do
-      stdout { subject.run }.should == subfile("bad-numbering-corrected")
-    end
+    @input.string = subfile("bad-numbering")
+    subject.run
+    @output.string.should == subfile("bad-numbering-corrected")
   end
 end

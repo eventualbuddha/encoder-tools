@@ -1,5 +1,7 @@
 source "http://gemcutter.org"
 
+gem "thor"
+
 group :test do
   gem "jeweler"
   gem "rake"

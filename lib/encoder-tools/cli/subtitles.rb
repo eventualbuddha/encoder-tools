@@ -1,5 +1,5 @@
 module EncoderTools
-  module CLI
+  class CLI
     module Subtitles
       autoload :Renumber, 'encoder-tools/cli/subtitles/renumber'
     end
