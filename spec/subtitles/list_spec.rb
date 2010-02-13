@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe EncoderTools::Subtitles::List do
-  Subtitle = EncoderTools::Subtitles::Subtitle
-
   before :all do
     @kill_bill = subfile('kill-bill-vol-2')
     @first_sub = subtitle(2716..2717.145, "Master...")

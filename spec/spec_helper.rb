@@ -12,4 +12,12 @@ Spec::Runner.configure do |config|
   def subfile(name)
     File.read(File.dirname(__FILE__) + "/fixtures/subtitles/#{name}.srt")
   end
+
+  def stdout(&block)
+    EncoderTools::CLI::Shell.capture(:stdout, &block)
+  end
+
+  def stdin(string, &block)
+    EncoderTools::CLI::Shell.capture(:stdin, string, &block)
+  end
 end
