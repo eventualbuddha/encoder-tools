@@ -4,10 +4,12 @@ module EncoderTools
       attr_accessor :entries
 
       def offset
+        return 0 if entries.empty?
         entries.first.offset
       end
 
       def offset=(offset)
+        return nil if entries.empty?
         diff = offset - self.offset
         entries.each {|subtitle| subtitle.offset += diff}
       end

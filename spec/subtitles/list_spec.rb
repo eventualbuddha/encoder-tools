@@ -21,6 +21,19 @@ describe EncoderTools::Subtitles::List do
     described_class.load(@kill_bill).offset.should == 2716
   end
 
+  context "with no subtitles" do
+    subject { described_class.load("") }
+
+    it "has offset 0" do
+      subject.offset.should == 0
+    end
+
+    it "ignores setting the offset" do
+      lambda { subject.offset += 2 }.
+        should_not change { subject.offset }.from(0)
+    end
+  end
+
   it "allows adjusting the offsets of all subtitles by setting an offset" do
     list = described_class.load(@kill_bill)
     list.offset += 1

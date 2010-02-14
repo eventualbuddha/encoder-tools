@@ -13,11 +13,15 @@ Spec::Runner.configure do |config|
     File.read(File.dirname(__FILE__) + "/fixtures/subtitles/#{name}.srt")
   end
 
-  def stdout(&block)
-    EncoderTools::CLI::Shell.capture(:stdout, &block)
-  end
+  shared_examples_for 'a CLI command' do
+    attr_reader :input, :output, :options
 
-  def stdin(string, &block)
-    EncoderTools::CLI::Shell.capture(:stdin, string, &block)
+    before do
+      @input  = StringIO.new
+      @output = StringIO.new
+      @options = {:input => @input, :output => @output}
+    end
+
+    subject { described_class.new(nil, @options) }
   end
 end
