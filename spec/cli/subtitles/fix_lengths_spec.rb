@@ -47,5 +47,12 @@ TEXT
       subject.run
       output.string.should == subfile('adjusted-long-subtitles')
     end
+
+    it "exits cleanly when interrupted" do
+      shell.stub!(:yes?).and_return(true)
+      shell.stub!(:say)
+      shell.should_receive(:ask).and_raise(Interrupt)
+      lambda { subject.run }.should_not raise_error
+    end
   end
 end

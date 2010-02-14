@@ -5,16 +5,37 @@ module EncoderTools
         THRESHOLD = 5
 
         def run
-          if long_subtitles.empty?
+          begin
+            if long_subtitles? && fix_subtitles?
+              output << fix_subtitles.to_s
+            end
+
+            return nil
+          rescue Interrupt
+            # just return on ^C
+          end
+        end
+
+        private
+          def long_subtitles?
+            return true if long_subtitles.any?
+
             shell.say "No subtitles found over #{THRESHOLD}s"
-            return
+            return false
           end
 
-          if not shell.yes?("Found #{long_subtitles.size} long subtitles. Would you like to fix them?")
-            return
+          def fix_subtitles?
+            shell.yes?("Found #{long_subtitles.size} long subtitles. Would you like to fix them?")
           end
 
-          long_subtitles.each do |subtitle|
+          def fix_subtitles
+            long_subtitles.each do |subtitle|
+              fix_subtitle(subtitle)
+            end
+            return list
+          end
+
+          def fix_subtitle(subtitle)
             lines = subtitle.to_s.to_a
             range = lines.shift.chomp
             range += " (#{subtitle.duration.to_i}s)\n"
@@ -25,12 +46,6 @@ module EncoderTools
             subtitle.duration = shell.ask("How long should it be?").to_i
           end
 
-          output << list.to_s
-
-          return nil
-        end
-
-        private
           def long_subtitles
             @long_subtitles ||= list.entries.select do |subtitle|
               subtitle.duration > THRESHOLD
