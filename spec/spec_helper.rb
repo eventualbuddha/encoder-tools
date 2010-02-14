@@ -14,7 +14,7 @@ Spec::Runner.configure do |config|
   end
 
   shared_examples_for 'a CLI command' do
-    attr_reader :input, :output, :options
+    attr_reader :input, :output, :options, :shell
 
     before do
       @input  = StringIO.new
@@ -22,6 +22,10 @@ Spec::Runner.configure do |config|
       @options = {:input => @input, :output => @output}
     end
 
-    subject { described_class.new(nil, @options) }
+    def stub_shell!
+      @shell = stub('shell')
+    end
+
+    subject { described_class.new(@shell, @options) }
   end
 end

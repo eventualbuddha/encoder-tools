@@ -23,4 +23,9 @@ describe EncoderTools::Subtitles::Subtitle do
   it "represents itself as a string with the timestamp range and text" do
     subject.to_s.should == %{00:00:01,500 --> 00:00:02,000\nHello World}
   end
+
+  it "allows adjusting the end of the range by setting the duration" do
+    subject.duration = 2
+    subject.range.should == (1.5..3.5)
+  end
 end

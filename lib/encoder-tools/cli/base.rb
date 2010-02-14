@@ -1,7 +1,7 @@
 module EncoderTools
   class CLI
     class Base
-      attr_reader :options
+      attr_reader :shell, :options
 
       def initialize(shell, options={})
         @shell, @options = shell, options

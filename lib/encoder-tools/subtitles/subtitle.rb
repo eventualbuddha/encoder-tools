@@ -19,6 +19,10 @@ module EncoderTools
         range.end - range.begin
       end
 
+      def duration=(duration)
+        self.range = offset..(offset + duration)
+      end
+
       def ==(other)
         other.is_a?(self.class) &&
           other.range == self.range &&
