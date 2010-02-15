@@ -2,7 +2,7 @@ module EncoderTools
   class CLI
     module Subtitles
       class FixLengths < Base
-        THRESHOLD = 5
+        DEFAULT_THRESHOLD = 5
 
         def run
           begin
@@ -20,7 +20,7 @@ module EncoderTools
           def long_subtitles?
             return true if long_subtitles.any?
 
-            shell.say "No subtitles found over #{THRESHOLD}s"
+            shell.say "No subtitles found over #{threshold}s"
             return false
           end
 
@@ -43,12 +43,16 @@ module EncoderTools
 
           def long_subtitles
             @long_subtitles ||= list.entries.select do |subtitle|
-              subtitle.duration > THRESHOLD
+              subtitle.duration > threshold
             end
           end
 
           def list
             @list ||= parse(input.read)
+          end
+
+          def threshold
+            options[:threshold] || DEFAULT_THRESHOLD
           end
       end
     end

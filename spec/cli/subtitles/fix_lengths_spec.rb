@@ -4,16 +4,16 @@ describe EncoderTools::CLI::Subtitles::FixLengths do
   it_should_behave_like 'a CLI command'
   before { stub_shell! }
 
-  context "with no subtitle lengths over the threshold" do
+  context "with no subtitle lengths over the default threshold" do
     before { input.string = subfile('no-long-subtitles') }
 
     it "says that there are no subtitles over the threshold" do
-      shell.should_receive(:say).with("No subtitles found over #{described_class::THRESHOLD}s")
+      shell.should_receive(:say).with("No subtitles found over #{described_class::DEFAULT_THRESHOLD}s")
       subject.run
     end
   end
 
-  context "with some subtitle lengths over the threshold" do
+  context "with some subtitle lengths over the default threshold" do
     before { input.string = subfile('some-long-subtitles') }
 
     it "asks whether the user wants to fix the long subtitles" do
@@ -53,6 +53,15 @@ TEXT
       shell.stub!(:say)
       shell.should_receive(:ask).and_raise(Interrupt)
       lambda { subject.run }.should_not raise_error
+    end
+
+    context "with a sufficiently high threshold" do
+      before { options[:threshold] = 10_000 }
+
+      it "says that there are no subtitles over the threshold" do
+        shell.should_receive(:say).with("No subtitles found over 10000s")
+        subject.run
+      end
     end
   end
 end
