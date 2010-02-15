@@ -20,7 +20,7 @@ module EncoderTools
       CLI::Subtitles::Offset.run(self, options.merge(:offset => offset))
     end
 
-    desc "fix-lengths", "Interactively fix subtitle lengths over SECONDS"
+    desc "fix-lengths", "Interactively fix subtitle lengths over N seconds"
     method_option :input,     :type => :string,  :required => true, :aliases => %w[-i]
     method_option :output,    :type => :string,  :required => true, :aliases => %w[-o]
     method_option :threshold, :type => :numeric, :required => true, :aliases => %w[-t], :default => CLI::Subtitles::FixLengths::DEFAULT_THRESHOLD
