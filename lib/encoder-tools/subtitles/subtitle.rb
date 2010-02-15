@@ -29,8 +29,12 @@ module EncoderTools
           other.text == self.text
       end
 
+      def range_string
+        "#{timestamp range.begin} --> #{timestamp range.end}"
+      end
+
       def to_s
-        "#{timestamp range.begin} --> #{timestamp range.end}\n#{text}"
+        [range_string, text].join("\n")
       end
 
       private

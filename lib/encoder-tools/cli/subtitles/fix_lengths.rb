@@ -36,13 +36,8 @@ module EncoderTools
           end
 
           def fix_subtitle(subtitle)
-            lines = subtitle.to_s.to_a
-            range = lines.shift.chomp
-            range += " (#{subtitle.duration.to_i}s)\n"
-            lines.unshift(range)
-            lines << "\n" << "\n"
-
-            shell.say(lines.join)
+            range = "#{subtitle.range_string} (#{subtitle.duration.to_i}s)"
+            shell.say([range, subtitle.text, '', ''].join("\n"))
             subtitle.duration = shell.ask("How long should it be?").to_i
           end
 
