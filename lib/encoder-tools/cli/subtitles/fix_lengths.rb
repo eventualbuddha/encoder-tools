@@ -36,9 +36,9 @@ module EncoderTools
           end
 
           def fix_subtitle(subtitle)
-            range = "#{subtitle.range_string} (#{subtitle.duration.to_i}s)"
+            range = "%s (%s)" % [subtitle.range_string, subtitle.timestamp(subtitle.duration)]
             shell.say([range, subtitle.text, '', ''].join("\n"))
-            subtitle.duration = shell.ask("How long should it be?").to_i
+            subtitle.duration = BigDecimal(shell.ask("How long should it be?"))
           end
 
           def long_subtitles

@@ -24,12 +24,12 @@ describe EncoderTools::CLI::Subtitles::FixLengths do
     it "asks for each subtitle how long it should be" do
       shell.should_receive(:yes?).and_return(true)
       shell.should_receive(:say).with(<<-TEXT)
-00:45:21,373 --> 01:45:22,681 (3601s)
+00:45:21,373 --> 01:45:22,681 (01:00:01,308)
 It causes my ears discomfort.
 
 TEXT
       shell.should_receive(:say).with(<<-TEXT)
-01:45:22,748 --> 02:45:24,274 (3601s)
+01:45:22,748 --> 02:45:24,274 (01:00:01,526)
 You bray like an ass!
 
 TEXT

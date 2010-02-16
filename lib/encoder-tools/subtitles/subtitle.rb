@@ -37,8 +37,11 @@ module EncoderTools
         [range_string, text].join("\n")
       end
 
-      private
       def timestamp(value)
+        self.class.timestamp(value)
+      end
+
+      def self.timestamp(value)
         seconds = value.to_i
         millis = ((value - seconds) * 1000).to_i
         minutes, seconds = seconds.divmod(60)
