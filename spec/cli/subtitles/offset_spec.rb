@@ -37,4 +37,9 @@ describe EncoderTools::CLI::Subtitles::Offset do
     subject.run
     output.string.should == subfile("short-example-offset-2")
   end
+
+  it "parses an offset with a fractional part" do
+    options[:offset] = '12.34'
+    subject.send(:parse_offset, EncoderTools::Subtitles::List.new, options[:offset]).should == BigDecimal(options[:offset])
+  end
 end

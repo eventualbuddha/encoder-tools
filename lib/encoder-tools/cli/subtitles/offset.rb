@@ -2,6 +2,11 @@ module EncoderTools
   class CLI
     module Subtitles
       class Offset < Base
+        NUMBER = '(\d+|\d*\.\d+)'
+        ABSOLUTE_OFFSET = %r{^#{NUMBER}$}
+        NEGATIVE_OFFSET = %r{^-#{NUMBER}$}
+        POSITIVE_OFFSET = %r{^\+#{NUMBER}$}
+
         def run
           output << offset(parse(input.read), options[:offset]).to_s
         end
@@ -16,12 +21,12 @@ module EncoderTools
             case offset
             when Fixnum
               offset
-            when /^\+(\d+)$/
-              list.offset + $1.to_i
-            when /^-(\d+)$/
-              list.offset - $1.to_i
-            when /^\d+$/
-              offset.to_i
+            when POSITIVE_OFFSET
+              list.offset + BigDecimal($1)
+            when NEGATIVE_OFFSET
+              list.offset - BigDecimal($1)
+            when ABSOLUTE_OFFSET
+              BigDecimal(offset)
             end
           end
       end
