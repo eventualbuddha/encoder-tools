@@ -10,7 +10,27 @@ Spec::Runner.configure do |config|
   end
 
   def subfile(name)
-    File.read(File.dirname(__FILE__) + "/fixtures/subtitles/#{name}.srt")
+    File.read(subfile_path(name))
+  end
+
+  def subfile_path(name)
+    fixture_path("subtitles/#{name}.srt")
+  end
+
+  def textfile(name)
+    File.read(textfile_path(name))
+  end
+
+  def textfile_path(name)
+    fixture_path("textfile/#{name}.txt")
+  end
+
+  def fixture(name)
+    File.read(fixture_path(name))
+  end
+
+  def fixture_path(name)
+    File.expand_path("../fixtures/#{name}", __FILE__)
   end
 
   shared_examples_for 'a CLI command' do

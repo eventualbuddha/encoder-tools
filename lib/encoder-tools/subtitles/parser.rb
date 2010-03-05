@@ -7,7 +7,7 @@ module EncoderTools
       class ParseError < RuntimeError; end
 
       def initialize(input)
-        @scanner = StringScanner.new(input)
+        @scanner = StringScanner.new(Util::TextReader.read(input))
         @last_index = 0
       end
 
