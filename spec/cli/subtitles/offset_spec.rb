@@ -42,4 +42,14 @@ describe EncoderTools::CLI::Subtitles::Offset do
     options[:offset] = '12.34'
     subject.send(:parse_offset, EncoderTools::Subtitles::List.new, options[:offset]).should == BigDecimal(options[:offset])
   end
+
+  it "parses an offset in hh:mm:ss format" do
+    options[:offset] = '1:02:03'
+    subject.send(:parse_offset, EncoderTools::Subtitles::List.new, options[:offset]).should == 3+(2+1*60)*60
+  end
+
+  it "parses an offset in mm:ss format" do
+    options[:offset] = '2:03'
+    subject.send(:parse_offset, EncoderTools::Subtitles::List.new, options[:offset]).should == 3+2*60
+  end
 end
