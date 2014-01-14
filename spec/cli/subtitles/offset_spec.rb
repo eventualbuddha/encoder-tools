@@ -1,7 +1,7 @@
-require File.expand_path('../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe EncoderTools::CLI::Subtitles::Offset do
-  it_should_behave_like 'a CLI command'
+  include_context 'a CLI command'
 
   it "does nothing with an empty subtitle list" do
     options[:add] = '0'

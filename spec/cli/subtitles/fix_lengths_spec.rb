@@ -1,8 +1,7 @@
-require File.expand_path('../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe EncoderTools::CLI::Subtitles::FixLengths do
-  it_should_behave_like 'a CLI command'
-  before { stub_shell! }
+  include_context 'a CLI command'
 
   context "with no subtitle lengths over the default threshold" do
     before { input.string = subfile('no-long-subtitles') }
@@ -49,8 +48,8 @@ TEXT
     end
 
     it "exits cleanly when interrupted" do
-      shell.stub!(:yes?).and_return(true)
-      shell.stub!(:say)
+      shell.stub(:yes?).and_return(true)
+      shell.stub(:say)
       shell.should_receive(:ask).and_raise(Interrupt)
       lambda { subject.run }.should_not raise_error
     end

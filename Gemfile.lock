@@ -1,36 +1,30 @@
-GEM
-  remote: http://gemcutter.org/
+PATH
+  remote: .
   specs:
-    columnize (0.3.1)
-    gemcutter (0.3.0)
-      json_pure
-    git (1.2.5)
-    jeweler (1.4.0)
-      gemcutter (>= 0.1.0)
-      git (>= 1.2.5)
-      rubyforge (>= 2.0.0)
-    json_pure (1.4.6)
-    linecache (0.43)
-    rake (0.8.7)
-    rspec (1.3.0)
-    ruby-debug (0.10.3)
-      columnize (>= 0.1)
-      ruby-debug-base (~> 0.10.3.0)
-    ruby-debug-base (0.10.3)
-      linecache (>= 0.3)
-    rubyforge (2.0.4)
-      json_pure (>= 1.1.7)
-    thor (0.14.3)
-    yard (0.5.8)
+    encoder-tools (0.0.2)
+      thor
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.2.5)
+    rake (10.1.1)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.7)
+    rspec-expectations (2.14.4)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.4)
+    thor (0.18.1)
+    yard (0.8.7.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.0.3)
-  jeweler
+  encoder-tools!
   rake
-  rspec (~> 1.3.0)
-  ruby-debug
-  thor
+  rspec (>= 2.0.0)
   yard
