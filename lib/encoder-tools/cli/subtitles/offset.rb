@@ -22,7 +22,7 @@ module EncoderTools
                     raise ArgumentError, "Must provide a set, add, or subtract option to determine the offset"
                   end
 
-          output << offset(parse(input.read), value).to_s
+          write offset(read, value)
         end
 
         protected

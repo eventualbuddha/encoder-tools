@@ -2,8 +2,10 @@ module EncoderTools
   class CLI
     module Subtitles
       class Renumber < Base
+        parser :relaxed
+
         def run
-          output << parse_relaxed(input.read).to_s
+          write(read)
         end
       end
     end

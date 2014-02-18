@@ -7,11 +7,11 @@ module EncoderTools
         DEFAULT_DICT = '/usr/share/dict/words'.freeze
 
         def run
-          output << parse(input.read).each do |subtitle|
+          write(read.each do |subtitle|
             subtitle.text.gsub!(/\w+/) do |word|
               fix_word(word)
             end
-          end.to_s
+          end)
         end
 
         private

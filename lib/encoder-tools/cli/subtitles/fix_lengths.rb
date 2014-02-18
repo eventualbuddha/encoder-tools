@@ -7,7 +7,7 @@ module EncoderTools
         def run
           begin
             if long_subtitles? && fix_subtitles?
-              output << fix_subtitles.to_s
+              write fix_subtitles
             end
 
             return nil
@@ -48,7 +48,7 @@ module EncoderTools
           end
 
           def list
-            @list ||= parse(input.read)
+            @list ||= read
           end
 
           def threshold
