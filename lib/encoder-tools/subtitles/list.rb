@@ -24,6 +24,11 @@ module EncoderTools
         return str
       end
 
+      def each(&block)
+        entries.each(&block)
+        return self
+      end
+
       def self.load(input, parser_class=Parser)
         result = new
         parser = parser_class.new(input)

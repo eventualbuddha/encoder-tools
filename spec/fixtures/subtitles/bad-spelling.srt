@@ -1,0 +1,8 @@
+1
+00:45:16,000 --> 00:45:17,145
+Thls ls a sentence wlth some bad spelllng.
+
+2
+00:45:18,815 --> 00:45:20,440
+This has better spelling. But also a word that is partially right, partially wrong: phllistlne.
+
