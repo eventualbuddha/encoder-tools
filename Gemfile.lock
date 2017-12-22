@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    encoder-tools (0.0.2)
+    encoder-tools (1.0.0)
       thor (~> 0.18.1)
 
 GEM
